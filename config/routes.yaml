@@ -1,3 +1,9 @@
 index:
     path: /
     controller: App\Controller\ViewController::index
+Register:
+    path: /Register
+    controller: App\Controller\AuthController::register
+Login:
+  path: /Login
+  controller: App\Controller\AuthController::login

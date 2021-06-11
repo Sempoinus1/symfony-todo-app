@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block container %}
+    <div class="text-center mt-5">
+        <form method="post">
+            <h1 class="h3 text-weight-normal">Registration Form</h1>
+            <h2 class="h6 text-weight-normal">If you already have account <a href="/Login">click here</a></h2>
+            <h1>{{ test }}</h1>
+
+            <label for="inputUsername">Enter username</label>
+            <input type="text" id="inputUsername" name="username" class="form-control" required>
+
+            <label for="inputEmail">Enter email</label>
+            <input type="email" id="inputEmail" name="email" class="form-control" >
+
+            <label for="inputPassword">Enter password</label>
+            <input type="password" id="inputPassword" name="password" class="form-control"
+            >
+
+            <input type="submit" value="Register" class="btn btn-lg btn-dark mt-2">
+        </form>
+    </div>
+{% endblock %}
