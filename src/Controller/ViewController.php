@@ -17,6 +17,16 @@ class ViewController extends AbstractController{
 
     public function index() : Response{
         $message = '';
+        $request = Request::createFromGlobals();
+        if($request->isMethod('post'))
+        {
+            $session = new Session();
+            $user = $this->getDoctrine()->getRepository(User::class)->find($session->get('userId'));
+            $user->setPermission(1);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+        }
         (new ViewController)->setGlobals($this->getDoctrine(),'View/index.html.twig',['message'=>$message]);
         return new Response();
     }

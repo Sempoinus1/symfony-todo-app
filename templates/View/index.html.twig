@@ -3,6 +3,14 @@
 {% block container %}
     <div class="text-center mt-5">
         <h1>Main Page</h1>
+        <hr>
+        {% if user %}
+        <form method="post">
+            <div class="list-group">
+                <button class="list-group-item list-group-item-action" name="grantAdmin">Grant Admin Privileges (dev)</button>
+            </div>
+        </form>
+        {% endif %}
         <p>{{ add.flashes.success }}</p>
     </div>
 {% endblock %}
