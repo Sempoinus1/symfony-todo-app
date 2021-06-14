@@ -17,7 +17,7 @@
                 {% for list in lists  %}
                         <tr>
                             <td>{{ list.id }}</td>
-                            <td><a href="/List/Detail/{{ list.id }}">{{ list.title }}</a></td>
+                            <td><a href="/List/Detail/{{ list.id }}/{{ list.title|replace({' ':'-'}) }}">{{ list.title }}</a></td>
                             <td>{{ list.shareable == 1 ? 'True' : 'False' }}</td>
                             {% for u in users %}
                                 {% if u.id == list.owner %}

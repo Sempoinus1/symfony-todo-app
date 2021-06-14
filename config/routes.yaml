@@ -17,10 +17,10 @@ allLists:
   path: /List
   controller: App\Controller\ListController:allLists
 list:
-  path: /List/Detail/{id}
+  path: /List/Detail/{id}/{name}
   controller: App\Controller\ListController:detailedList
 entryAdd:
-  path: /List/Detail/{id}/Add
+  path: /List/Detail/{id}/{name}/Add
   controller: App\Controller\ListController:addEntry
 admin:
   path: /Admin
