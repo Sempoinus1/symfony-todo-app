@@ -22,3 +22,18 @@ list:
 entryAdd:
   path: /List/Detail/{id}/Add
   controller: App\Controller\ListController:addEntry
+admin:
+  path: /Admin
+  controller: App\Controller\AdminController:view
+admin_userlist:
+  path: /Admin/Users
+  controller: App\Controller\AdminController:users
+admin_lists:
+  path: /Admin/Lists
+  controller: App\Controller\AdminController:lists
+userpanel:
+  path: /User/{name}/Panel
+  controller: App\Controller\UserController:view
+user:
+  path: /User/{name}
+  controller: App\Controller\UserController:user

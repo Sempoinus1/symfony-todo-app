@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block container %}
+    <div class="text-center mt-5">
+        {% if user %}
+            {% if user.permission == 1 %}
+                <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Permission</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for usr in users  %}
+                        <tr>
+                            <td>{{ usr.id }}</td>
+                            <td><a href="/User/{{ usr.username }}">{{ usr.username }}</a></td>
+                            <td>{{ usr.email }}</td>
+                            <td>{{ usr.permission == 1 ? 'Administrator' : 'Regular User' }}</td>
+                        </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+                <h1>You have no permission to view this.</h1>
+                <p>If you want go back click <a href="/">here</a></p>
+            {% endif %}
+        {% else %}
+            <h1>You are not logged in.</h1>
+            <p>Please sign in by clicking <a href="/Login">here</a></p>
+        {% endif %}
+    </div>
+{% endblock %}

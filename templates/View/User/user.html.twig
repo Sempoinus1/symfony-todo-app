@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+{% block container %}
+    <div class="text-center mt-5">
+        {% if not error %}
+        {% if user %}
+            <div class="alert-success">{{ message }}</div>
+            <div class="jumbotron">
+                <div class="list-group">
+                    <div class="list-group-item flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">Username</h5>
+                        </div>
+                        <p class="mb-1">{{ usr.username }}</p>
+                    </div>
+                    <div class="list-group">
+                        <div class="list-group-item flex-column align-items-start">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">Permission</h5>
+                            </div>
+                            <p class="mb-1">{{ usr.permission == 1 ? 'Administrator' : 'Regular user' }}</p>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="container">
+                    <form method="post">
+                        {% if user.username == usr.username or user.permission == 1 %}
+                        <a href="/User/{{ usr.username }}/Panel" ><div class="btn btn-dark">Edit profile</div></a>
+                        {% endif %}
+                    {%  if user.permission == 1 %}
+                    <button class="btn btn-dark" name="togglePerms">Toggle Permissions</button>
+                    {%  endif %}
+                    </form>
+
+                </div>
+            </div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Shareable</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for list in lists  %}
+                    {% if list.owner == user.id or list.shareable == 1 or user.permission == 1 %}
+                        <tr>
+                            <td>{{ list.id }}</td>
+                            <td><a href="/List/Detail/{{ list.id }}">{{ list.title }}</a></td>
+                            <td>{{ list.shareable == 1 ? 'True' : 'False' }}</td>
+                        </tr>
+                    {% endif %}
+
+                {% endfor %}
+                </tbody>
+            </table>
+
+        {% else %}
+            <h1>You are not logged in.</h1>
+            <p>Please sign in by clicking <a href="/Login">here</a></p>
+        {% endif %}
+        {% else %}
+            <h1>This user does not exist.</h1>
+            <p>Please go back by <a href="/">clicking here</a></p>
+        {% endif %}
+    </div>
+{% endblock %}

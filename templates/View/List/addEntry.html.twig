@@ -3,7 +3,7 @@
     <div class="text-center mt-5">
         {% if user %}
             {% if list %}
-                {% if user.id == list.owner %}
+                {% if user.id == list.owner or list.shareable == 1 or user.permission == 1 %}
                 {% if message != '' %}
                     <div class="alert-success">{{ message }}</div>
                 {% endif %}

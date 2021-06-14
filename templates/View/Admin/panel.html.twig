@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+{% block container %}
+    <div class="text-center mt-5">
+        {% if user %}
+            {% if user.permission == 1 %}
+                <div class="jumbotron">
+                    <div class="list-group">
+                        <a class="list-group-item text-decoration-none" href="/Admin/Users">
+                            User List
+                        </a>
+                        <a class="list-group-item text-decoration-none" href="/Admin/Lists">
+                            List List
+                        </a>
+                    </div>
+                </div>
+            {% else %}
+                <h1>You have no permission to view this.</h1>
+                <p>If you want go back click <a href="/">here</a></p>
+            {% endif %}
+        {% else %}
+            <h1>You are not logged in.</h1>
+            <p>Please sign in by clicking <a href="/Login">here</a></p>
+        {% endif %}
+    </div>
+{% endblock %}

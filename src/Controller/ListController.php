@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Entity\ListEntry;
 use App\Entity\TodoList;
+use App\Entity\User;
 use App\Repository\TodoListRepository;
 use Doctrine\DBAL\Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -42,7 +43,9 @@ class ListController extends AbstractController{
         $message = '';
 
         $lists = $this->getDoctrine()->getRepository(TodoList::class)->findAll();
-        (new ViewController)->setGlobals($this->getDoctrine(),'View/List/lists.html.twig',['message'=>$message, 'lists'=>$lists]);
+        $users = $this->getDoctrine()->getRepository(User::class)->findAll();
+
+        (new ViewController)->setGlobals($this->getDoctrine(),'View/List/lists.html.twig',['message'=>$message, 'lists'=>$lists, 'users' => $users]);
         return new Response();
     }
 

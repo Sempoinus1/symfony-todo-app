@@ -4,14 +4,14 @@
     <div class="text-center mt-5">
         {% if user %}
             {% if list %}
-                {% if list.owner == user.id or list.shareable %}
+                {% if list.owner == user.id or list.shareable or user.permission == 1 %}
                     {% if message != '' %}
                         <div class="alert-success">{{ message }}</div>
                     {% endif %}
                     <div class="jumbotron">
                         <form method="post">
                             <a class="text-decoration-none" href="/List/Detail/{{ list.id }}/Add"><div class="btn btn-lg btn-dark">Add Entry</div></a>
-                            {% if list.owner == user.id %}
+                            {% if list.owner == user.id or user.permission == 1 %}
                             <button class="btn btn-lg btn-dark" name="toggleShare">Toggle publicity</button>
                             {% endif %}
                         </form>

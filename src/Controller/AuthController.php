@@ -94,7 +94,7 @@ class AuthController extends AbstractController{
         return $this->redirectToRoute('index');
     }
 
-    private function hashPassword(string $password): string
+    public function hashPassword(string $password): string
     {
         $factory = new PasswordHasherFactory([
            'common'=>['algorithm'=>'bcrypt'],
@@ -103,7 +103,7 @@ class AuthController extends AbstractController{
         $passwordHasher = $factory->getPasswordHasher('common');
         return $passwordHasher->hash($password);
     }
-    private function verifyPassword(string $hash, string $password)
+    public function verifyPassword(string $hash, string $password)
     {
         $factory = new PasswordHasherFactory([
             'common'=>['algorithm'=>'bcrypt'],

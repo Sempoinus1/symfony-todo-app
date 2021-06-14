@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\TodoList;
 use App\Entity\User;
 use App\Repository\UserRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -19,6 +20,8 @@ class ViewController extends AbstractController{
         (new ViewController)->setGlobals($this->getDoctrine(),'View/index.html.twig',['message'=>$message]);
         return new Response();
     }
+
+
 
 
     public function setGlobals($doctrine, $template, $args)

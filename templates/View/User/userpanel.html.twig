@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+{% block container %}
+    <div class="text-center mt-5">
+        {% if not error %}
+        {% if usr %}
+            {% if user.username == usr.username %}
+                <div class="alert-success">{{ message }}</div>
+                <form method="post">
+                    <label for="inputEmail">Email</label>
+                    <input class="form-control" type="email" id="inputEmail" name="inputEmail" value="{{ usr.email }}" disabled>
+                    <label for="inputUsername">Username</label>
+                    <input class="form-control" type="text" id="inputUsername" name="inputUsername" value="{{ usr.username }}">
+                    <label for="inputPwd">(Type only if you want to change password)</label>
+                    <input type="password" id="inputPwd" name="inputPwd" class="form-control">
+                    <hr>
+                    <label for="inputPassword">Password to confirm</label>
+                    <input class="form-control" type="password" id="inputPassword" name="inputPassword" value="">
+                    <button class="btn btn-lg btn-dark mt-3" name="editProfile">Edit profile</button>
+                </form>
+            {% else %}
+                <h1>You have no permission to be here.</h1>
+                <p>Please go back by <a href="/">clicking here</a></p>
+            {% endif %}
+        {% else %}
+            <h1>You are not logged in.</h1>
+            <p>Please sign in by clicking <a href="/Login">here</a></p>
+        {% endif %}
+        {% else %}
+            <h1>This user does not exist</h1>
+            <p>Please go back by <a href="/">clicking here</a></p>
+        {% endif %}
+    </div>
+{% endblock %}
