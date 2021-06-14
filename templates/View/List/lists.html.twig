@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block container %}
+    <div class="text-center mt-5">
+        {% if user %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Shareable</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for list in lists  %}
+                        {% if list.owner == user.id %}
+                        <tr>
+                            <td>{{ list.id }}</td>
+                            <td><a href="/List/Detail/{{ list.id }}">{{ list.title }}</a></td>
+                            <td>{{ list.shareable == 1 ? 'True' : 'False' }}</td>
+
+                        </tr>
+                        {% endif %}
+
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <h1>You are not logged in.</h1>
+            <p>Please sign in by clicking <a href="/Login">here</a></p>
+        {% endif %}
+    </div>
+{% endblock %}

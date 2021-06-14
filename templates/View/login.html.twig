@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block container %}
+    <div class="text-center mt-5">
+        {% if user %}
+        <h1>You are already signed in!</h1>
+        {% else %}
+        <form method="post">
+            <h1 class="h3 text-weight-normal">Login Form</h1>
+            <h2 class="h6 text-weight-normal">If you don't have account <a href="/Register">click here</a></h2>
+
+            {% if message != null %}
+                <p>{{ message }}</p>
+            {% endif %}
+
+            <label for="inputEmail">Enter email</label>
+            <input type="email" id="inputEmail" name="email" class="form-control" required>
+
+            <label for="inputPassword">Enter password</label>
+            <input type="password" id="inputPassword" name="password" class="form-control" required
+            >
+
+            <input type="submit" value="Login" class="btn btn-lg btn-dark mt-2">
+        </form>
+        {% endif %}
+    </div>
+{% endblock %}

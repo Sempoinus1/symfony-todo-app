@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block container %}
+    <div class="text-center mt-5">
+        {% if user %}
+            {% if list %}
+                {% if list.owner == user.id or list.shareable %}
+                    {% if message != '' %}
+                        <div class="alert-success">{{ message }}</div>
+                    {% endif %}
+                    <div class="jumbotron">
+                        <form method="post">
+                            <a class="text-decoration-none" href="/List/Detail/{{ list.id }}/Add"><div class="btn btn-lg btn-dark">Add Entry</div></a>
+                            {% if list.owner == user.id %}
+                            <button class="btn btn-lg btn-dark" name="toggleShare">Toggle publicity</button>
+                            {% endif %}
+                        </form>
+                        <div class="alert-info mt-3">This list is now {{ list.shareable == 1 ? 'Public' : 'Private' }}</div>
+
+                    </div>
+                    <h1>Planned:</h1>
+                    <hr>
+                    <form method="post">
+                    <table class="table">
+                    {% for entry in entries %}
+                        {% if not entry.status %}
+                        <tr>
+                            <td>{{ entry.title }}</td>
+                            <td style="max-width: 20vw;" class="text-break">{{ entry.description }}</td>
+                            <td>
+                                <input type="hidden" name="entryId" value="{{ entry.id }}">
+                                <button class="btn btn-lg btn-dark" name="complete">Complete</button>
+                                <button class="btn btn-lg btn-dark" name="delete">Delete</button>
+
+                            </td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                    </table>
+                    </form>
+                    <h1>Completed:</h1>
+                    <hr>
+                    <form method="post">
+                    <table class="table">
+                        {% for entry in entries %}
+                            {% if entry.status %}
+                                <tr>
+                                    <td>{{ entry.title }}</td>
+                                    <td style="max-width: 20vw;" class="text-break">{{ entry.description }}</td>
+                                    <td>
+                                        <input type="hidden" name="entryId" value="{{ entry.id }}">
+                                        <button class="btn btn-lg btn-dark" name="complete">Incomplete</button>
+                                        <button class="btn btn-lg btn-dark" name="delete">Delete</button>
+
+                                    </td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </table>
+                    </form>
+                    {% else %}
+                        <h1 class="h3 text-weight-normal">This list is not public</h1>
+                        <p class="h6 text-weight-normal"><a href="/List">Click here to redirect back to list</a></p>
+                {% endif %}
+            {% else %}
+                <h1 class="h3 text-weight-normal">This list does not exist</h1>
+                <p class="h6 text-weight-normal"><a href="/List">Click here to redirect back to list</a></p>
+            {% endif %}
+        {% else %}
+            <h1>You are not logged in.</h1>
+            <p>Please sign in by clicking <a href="/Login">here</a></p>
+        {% endif %}
+    </div>
+{% endblock %}

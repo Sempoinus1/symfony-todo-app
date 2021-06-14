@@ -6,7 +6,7 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {
-        "php": ">=7.2.5",
+        "php": ">=7.4",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "composer/package-versions-deprecated": "1.11.99.2",
@@ -29,6 +29,7 @@
         "symfony/mime": "*",
         "symfony/monolog-bundle": "^3.1",
         "symfony/notifier": "*",
+        "symfony/password-hasher": "5.3.*",
         "symfony/process": "*",
         "symfony/property-access": "5.3.*",
         "symfony/property-info": "5.3.*",

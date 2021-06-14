@@ -1,3 +1,24 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+index:
+    path: /
+    controller: App\Controller\ViewController::index
+register:
+  path: /Register
+  controller: App\Controller\AuthController::register
+login:
+  path: /Login
+  controller: App\Controller\AuthController::login
+logout:
+  path: /Logout
+  controller: App\Controller\AuthController::logout
+addList:
+  path: /List/Add
+  controller: App\Controller\ListController::addList
+allLists:
+  path: /List
+  controller: App\Controller\ListController:allLists
+list:
+  path: /List/Detail/{id}
+  controller: App\Controller\ListController:detailedList
+entryAdd:
+  path: /List/Detail/{id}/Add
+  controller: App\Controller\ListController:addEntry

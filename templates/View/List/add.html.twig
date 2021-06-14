@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% block container %}
+    <div class="text-center mt-5">
+        {% if user %}
+            {% if message != '' %}
+                <div class="alert-success">{{ message }}</div>
+            {% endif %}
+            <form method="post">
+                <label for="titleInput">Title of the list</label>
+                <input type="text" name="titleInput" id="titleInput" class="form-control" required>
+
+                <label for="shareableCheckbox">Is Shareable?</label>
+                <input type="checkbox" id="shareableCheckbox" name="shareableCheckbox" class="form-control">
+
+                <input type="submit" value="Create list" class="btn btn-lg btn-dark mt-2" name="addList">
+            </form>
+        {% else %}
+            <h1>You are not logged in.</h1>
+            <p>Please sign in by clicking <a href="/Login">here</a></p>
+        {% endif %}
+    </div>
+{% endblock %}
+
